@@ -212,7 +212,7 @@ process {
         if ($bitlockerNeedsInitialOnCommand) {
             Write-Host "Attempting to turn on BitLocker for C: drive using manage-bde -on..."
             try {
-                $commandOn = "manage-bde -on C:"
+                $commandOn = "manage-bde -on C: -used"
                 $tempOutputFileOn = [System.IO.Path]::GetTempFileName()
                 $processOn = Start-Process -FilePath "cmd.exe" -ArgumentList "/c $commandOn > `"$tempOutputFileOn`" 2>&1" -NoNewWindow -Wait -PassThru -ErrorAction Stop
                 $manageBdeOutputOn = Get-Content $tempOutputFileOn | Out-String
@@ -380,4 +380,5 @@ process {
 
 end {
     # Script end block
+
 }
